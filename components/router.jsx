@@ -15,31 +15,33 @@ var Router = React.createClass({
 		page( '/', function ( ctx ) {
 			var data,
 					slug = ctx.params.slug,
-					url = "/wp-json/wp/v2/posts";
-					//url = "/wp-json/wp-api-menus/v2/menus/2";
+					// url = "/wp-json/wp/v2/pages";
+					url = "/wp-json/wp-api-menus/v2/menus/2";
 			
 			request
 				.get( url )
 				.end( function( err, res ) {
 					data = JSON.parse( res.text );
 					//self.setState({ component: <Content data={ data } bodyClass="index" /> });
-					console.log(res);
+					// console.log(res);
 					console.log(data);
 			});
 
 		});
 
-		/*page( '/:year/:month/:day/:slug', function ( ctx ) {
+		page( '/:slug', function ( ctx ) {
 			var data,
 				slug = ctx.params.slug,
-				url = "/wp-json/posts/?filter[name]=" + slug;
+				url = "/wp-json/wp/v2/pages/?filter[name]=" + slug;
 			request
 				.get( url )
 				.end( function( err, res ) {
 					data = JSON.parse( res.text );
-					self.setState({ component: <Content data={ data } bodyClass="single" /> });
+					// self.setState({ component: <Content data={ data } bodyClass="single" /> });
+
+					console.log(data);
 				});
-		});*/
+		});
 
 		/*page( '*', function ( ctx ) {
 			if ( ctx.state.pageData ) {

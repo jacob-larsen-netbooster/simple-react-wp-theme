@@ -4,17 +4,11 @@ var React = require( 'react' ),
 
 
 var Router = require( './router.jsx' );
+var Menu = require( './menu.jsx' );
 
 
-
-
-class Item extends React.Component {
-	render(){
-		return <h2>Hello Jacob</h2>;
-	}
-}
 
 
 
 //ReactDOM.render(<Item />, document.getElementById('js-rendere'));
-ReactDOM.render(<Router />, document.getElementById('js-rendere'));
+ReactDOM.render(<Menu />, document.getElementById('js-rendere'));
