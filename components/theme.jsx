@@ -8,7 +8,19 @@ var Menu = require( './menu.jsx' );
 
 
 
+var PageWrapper = React.createClass({
+  render: function() {
+    return (
+      <div>
+        <Menu />
+        <Router />
+      </div>
+    );
+  }
+});
 
 
-//ReactDOM.render(<Item />, document.getElementById('js-rendere'));
-ReactDOM.render(<Menu />, document.getElementById('js-rendere'));
+
+
+// ReactDOM.render(<Menu />, document.getElementById('js-rendere'));
+ReactDOM.render(<PageWrapper />, document.getElementById('js-rendere'));

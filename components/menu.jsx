@@ -30,12 +30,14 @@ var Menu = React.createClass({
     thelist = this.state.items;
 
     return (
-      <ul>
-        {thelist.map((item) => {
-          console.log(item);
-          return <MenuItems item={item} key={item.id} />
-        })}
-      </ul>
+      <div className="menu">
+        <ul>
+          {thelist.map((item) => {
+            // console.log(item);
+            return <MenuItems item={item} key={item.id} />
+          })}
+        </ul>
+      </div>
     );
   }
 });

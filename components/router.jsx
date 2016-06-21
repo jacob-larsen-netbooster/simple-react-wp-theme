@@ -12,22 +12,22 @@ var Router = React.createClass({
 		
 		var self = this;
 
-		page( '/', function ( ctx ) {
-			var data,
-					slug = ctx.params.slug,
-					// url = "/wp-json/wp/v2/pages";
-					url = "/wp-json/wp-api-menus/v2/menus/2";
+		// page( '/', function ( ctx ) {
+		// 	var data,
+		// 			slug = ctx.params.slug,
+		// 			// url = "/wp-json/wp/v2/pages";
+		// 			url = "/wp-json/wp-api-menus/v2/menus/2";
 			
-			request
-				.get( url )
-				.end( function( err, res ) {
-					data = JSON.parse( res.text );
-					//self.setState({ component: <Content data={ data } bodyClass="index" /> });
-					// console.log(res);
-					console.log(data);
-			});
+		// 	request
+		// 		.get( url )
+		// 		.end( function( err, res ) {
+		// 			data = JSON.parse( res.text );
+		// 			//self.setState({ component: <Content data={ data } bodyClass="index" /> });
+		// 			// console.log(res);
+		// 			console.log(data);
+		// 	});
 
-		});
+		// });
 
 		page( '/:slug', function ( ctx ) {
 			var data,
