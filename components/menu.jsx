@@ -1,12 +1,25 @@
 var React = require( 'react' ),
     request = require( 'superagent' );
 
-var Menu = React.createClass({
 
+    var data,
+        url = "/wp-json/wp-api-menus/v2/menus";
+    request
+        .get( url )
+        .end( function( err, res ) {
+          data = JSON.parse( res.text );
+          firstMenuId = data[0].ID;
+          console.log(firstMenuId);
+    });
+
+
+
+var Menu = React.createClass({
   componentWillMount: function() {
+    var firstMenuId = '2';
     var self = this;
     var data,
-        url = "/wp-json/wp-api-menus/v2/menus/2";
+        url = "/wp-json/wp-api-menus/v2/menus/"+firstMenuId;
     
     request
         .get( url )
