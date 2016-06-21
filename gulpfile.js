@@ -6,6 +6,7 @@ var gulp = require( 'gulp' ),
 
 gulp.task( 'react', function() {
 	return gulp.src( 'components/theme.jsx' )
+		.on('error', ErrorHandler)
 		.pipe( react() )
 		.pipe( gulp.dest( 'js' ) );
 });
@@ -18,7 +19,7 @@ gulp.task( 'js', bundle );
 
 function bundle() {
 	return bundler.bundle()
-		// .on( 'error', gutil.log.bind( gutil, 'Browserify Error' ) )
+		.on('error', ErrorHandler)
 		.pipe( source( 'theme.js' ) )
 			// .pipe( buffer() )
 			// .pipe( sourcemaps.init( { loadMaps: true } ) )
@@ -27,7 +28,10 @@ function bundle() {
 }
 
 
-
+function ErrorHandler (error) {
+  console.log(error.toString())
+  this.emit('end')
+}
 
 // Watcher
 gulp.task( 'watch', function() {
