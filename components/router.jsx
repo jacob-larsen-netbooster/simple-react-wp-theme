@@ -11,14 +11,13 @@ var Router = React.createClass({
 		// If Index
 		page( '/', function ( ctx ) {
 			var data,
-					slug = ctx.params.slug,
 					url = "/wp-json/wp/v2/posts";
 
 			request
 				.get( url )
 				.end( function( err, res ) {
 					data = JSON.parse( res.text );
-					self.setState({ content: <Content data={ data } bodyClass="index" /> });
+					self.setState({ component: <Content data={ data } bodyClass="index" /> });
 			});
 
 		});
@@ -33,7 +32,7 @@ var Router = React.createClass({
 				.get( url )
 				.end( function( err, res ) {
 					data = JSON.parse( res.text );
-					self.setState({ content: <Content data={ data } bodyClass="single" /> });
+					self.setState({ component: <Content data={ data } bodyClass="post" /> });
 				});
 		});
 
@@ -47,7 +46,7 @@ var Router = React.createClass({
 				.get( url )
 				.end( function( err, res ) {
 					data = JSON.parse( res.text );
-					self.setState({ content: <Content data={ data } bodyClass="single" /> });
+					self.setState({ component: <Content data={ data } bodyClass="page" /> });
 				});
 		});
 
@@ -83,11 +82,11 @@ var Router = React.createClass({
 	},
 
 	getInitialState: function() {
-		return { content: <div /> };
+		return { component: <div /> };
 	},
 
 	render: function() {
-		return this.state.content;
+		return this.state.component;
 	}
 
 });

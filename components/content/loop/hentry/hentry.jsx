@@ -2,7 +2,7 @@
  * External dependencies
  */
 var React = require( 'react' ),
-	page = require( 'page' );
+		page = require( 'page' );
 
 /**
  * Renders post
