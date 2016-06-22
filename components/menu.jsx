@@ -1,74 +1,47 @@
 var React = require( 'react' ),
     request = require( 'superagent' );
 
-// var getTopMenuId 
-
-
-
-
-
 var Menu = React.createClass({
-  getInitialState: function() {
-    return {
-      menuId: 0,
-      items: [{}]
-    };
-  },
 
-  componentWillMount: function() {
-
+  componentDidMount: function() {
     var menuName = this.props.menu;
-
-    var data,
+    var menu,
+        menuContent,
         menuId,
-        test,
+        menuItems,
         self = this;
     request
         .get( "/wp-json/wp-api-menus/v2/menu-locations" )
         .end( function( err, res ) {
-          data = JSON.parse( res.text );
-          menuId = data[menuName].ID;
-
-          self.setState({ 
-            menuId: menuId
+          menu = JSON.parse( res.text );
+          menuId = menu[menuName].ID;
+    
+          request
+              .get( "/wp-json/wp-api-menus/v2/menus/"+menuId )
+              .end( function( err, res ) {
+                
+                menuContent = JSON.parse( res.text );
+                menuItems = menuContent.items;
+                self.setState({ 
+                  items: menuItems
+                });
           });
 
     });
   },
 
- 
-  componentDidMount: function() {
-
-    var self = this,
-        topMenuId = 3,
-        data,
-        menuItems;
-
-        console.log(self);
-        console.log(self.state);
-    
-    request
-        .get( "/wp-json/wp-api-menus/v2/menus/"+topMenuId )
-        .end( function( err, res ) {
-          data = JSON.parse( res.text );
-          menuItems = data.items;
-
-          self.setState({ 
-            items: menuItems
-          });
-    });
-
-
+  getInitialState: function() {
+    return {
+      items: [{}]
+    };
   },
 
   render: function() {
-    var thelist = this.state.items;
-
     return (
       <div className="menu">
         <ul>
           {
-            thelist.map((item) => {
+            this.state.items.map((item) => {
                 return <MenuItems item={item} key={item.id} />
             })
           }
@@ -77,7 +50,6 @@ var Menu = React.createClass({
     );
   }
 });
-
 
 var MenuItems = React.createClass({
   render: function() {
@@ -90,6 +62,5 @@ var MenuItems = React.createClass({
     );
   }
 });
-
 
 module.exports = Menu;

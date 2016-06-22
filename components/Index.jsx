@@ -1,23 +1,21 @@
 var React = require( 'react' ),
     ReactDOM = require( 'react-dom' );
 
-
-
-var Router = require( './router.jsx' );
-var Menu = require( './menu.jsx' );
+var Router = require( './Router.jsx' );
+var Menu = require( './Menu.jsx' );
+var StandardComponent = require( './Boiler.jsx' ); // <StandardComponent />
 
 var PageWrapper = React.createClass({
-  render: function() {
+  render() {
     return (
       <div>
+        
         <Menu menu={'topMenu'}/>
         <Router />
       </div>
     );
   }
 });
-
-
 
 
 // ReactDOM.render(<Menu />, document.getElementById('js-rendere'));

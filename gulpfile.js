@@ -6,7 +6,7 @@ var gulp = require( 'gulp' ),
 
 
 gulp.task( 'react', function() {
-	return gulp.src( 'components/theme.jsx' )
+	return gulp.src( 'components/Index.jsx' )
 		.on('error', ErrorHandler)
 		.pipe( react() )
 		.pipe( gulp.dest( 'js' ) );
@@ -14,7 +14,7 @@ gulp.task( 'react', function() {
 
 
 
-var bundler = browserify( './components/theme.jsx' );
+var bundler = browserify( './components/Index.jsx' );
  bundler.transform( reactify )
 				.transform(babelify, {presets: ["es2015", "react"]});
 
