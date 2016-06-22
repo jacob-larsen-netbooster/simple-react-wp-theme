@@ -32,22 +32,26 @@ var Menu = React.createClass({
 
   getInitialState: function() {
     return {
-      items: [{}]
+      items: null
     };
   },
 
   render: function() {
-    return (
-      <div className="menu">
-        <ul>
-          {
-            this.state.items.map((item) => {
-                return <MenuItems item={item} key={item.id} />
-            })
-          }
-        </ul>
-      </div>
-    );
+    if (this.state.items) {
+      return (
+        <div className="menu">
+          <ul>
+            {
+              this.state.items.map((item) => {
+                  return <MenuItems item={item} key={item.id} />
+              })
+            }
+          </ul>
+        </div>
+      );
+    }
+    // return <div>Loading menu...</div>;
+    return <div />
   }
 });
 
