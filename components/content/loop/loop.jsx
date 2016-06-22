@@ -1,6 +1,3 @@
-/**
- * External dependencies
- */
 var React = require( 'react' ),
 		page = require( 'page' );
 
@@ -12,7 +9,7 @@ var Hentry = require( './hentry/hentry.jsx' );
 /**
  * Renders list of posts
  */
-Loop = React.createClass({
+var Loop = React.createClass({
 
 	render: function() {
 		var context = this.props.context,

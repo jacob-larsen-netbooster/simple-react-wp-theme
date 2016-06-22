@@ -1,12 +1,10 @@
 var React = require( 'react' ),
-		ReactDOM = require( 'react-dom' );
+    ReactDOM = require( 'react-dom' );
 
 
 
 var Router = require( './router.jsx' );
 var Menu = require( './menu.jsx' );
-
-
 
 var PageWrapper = React.createClass({
   render: function() {

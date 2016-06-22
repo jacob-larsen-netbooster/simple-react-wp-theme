@@ -1,6 +1,7 @@
 var gulp = require( 'gulp' ),
 		browserify = require( 'browserify' ),
 		reactify = require( 'reactify' ),
+		babelify = require( 'babelify' ),
 		source = require( 'vinyl-source-stream' );
 
 
@@ -11,8 +12,11 @@ gulp.task( 'react', function() {
 		.pipe( gulp.dest( 'js' ) );
 });
 
+
+
 var bundler = browserify( './components/theme.jsx' );
-bundler.transform( reactify );
+ bundler.transform( reactify )
+				.transform(babelify, {presets: ["es2015", "react"]});
 
 gulp.task( 'js', bundle );
 // bundler.on( 'update', bundle );

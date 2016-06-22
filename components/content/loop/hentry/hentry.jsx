@@ -1,13 +1,10 @@
-/**
- * External dependencies
- */
 var React = require( 'react' ),
 		page = require( 'page' );
 
 /**
  * Renders post
  */
-Hentry = React.createClass({
+var Hentry = React.createClass({
 	render: function() {
 
 		return (

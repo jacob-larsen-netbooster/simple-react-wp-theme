@@ -2,15 +2,15 @@ var React = require( 'react' ),
     request = require( 'superagent' );
 
 
-    var data,
-        url = "/wp-json/wp-api-menus/v2/menus";
-    request
-        .get( url )
-        .end( function( err, res ) {
-          data = JSON.parse( res.text );
-          firstMenuId = data[0].ID;
-          console.log(firstMenuId);
-    });
+    // var data,
+    //     url = "/wp-json/wp-api-menus/v2/menus";
+    // request
+    //     .get( url )
+    //     .end( function( err, res ) {
+    //       data = JSON.parse( res.text );
+    //       firstMenuId = data[0].ID;
+    //       console.log(firstMenuId);
+    // });
 
 
 
@@ -19,6 +19,7 @@ var Menu = React.createClass({
     var firstMenuId = '2';
     var self = this;
     var data,
+        menuItems,
         url = "/wp-json/wp-api-menus/v2/menus/"+firstMenuId;
     
     request
@@ -40,15 +41,16 @@ var Menu = React.createClass({
   },
 
   render: function() {
-    thelist = this.state.items;
+    var thelist = this.state.items;
 
     return (
       <div className="menu">
         <ul>
-          {thelist.map((item) => {
-            // console.log(item);
-            return <MenuItems item={item} key={item.id} />
-          })}
+          {
+            thelist.map((item) => {
+                return <MenuItems item={item} key={item.id} />
+            })
+          }
         </ul>
       </div>
     );

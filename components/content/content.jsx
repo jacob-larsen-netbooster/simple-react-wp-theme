@@ -1,18 +1,13 @@
-/**
- * External dependencies
- */
 var React = require( 'react' );
 
-/**
- * Internal dependencies
- */
 var Loop = require( './loop/loop.jsx' );
 
 /**
  * Handles getting of posts from the server
  */
-Content = React.createClass({
+var Content = React.createClass({
 	render: function() {
+		var singlePostID;
 		// Check if we're just viewing one post, if so, pass the ID down
 
 		// console.log(this.props.data);
