@@ -1,29 +1,54 @@
 var React = require( 'react' ),
     request = require( 'superagent' );
 
+// var getTopMenuId 
 
-    // var data,
-    //     url = "/wp-json/wp-api-menus/v2/menus";
-    // request
-    //     .get( url )
-    //     .end( function( err, res ) {
-    //       data = JSON.parse( res.text );
-    //       firstMenuId = data[0].ID;
-    //       console.log(firstMenuId);
-    // });
+
 
 
 
 var Menu = React.createClass({
+  getInitialState: function() {
+    return {
+      menuId: 0,
+      items: [{}]
+    };
+  },
+
   componentWillMount: function() {
-    var firstMenuId = '2';
-    var self = this;
+
+    var menuName = this.props.menu;
+
     var data,
-        menuItems,
-        url = "/wp-json/wp-api-menus/v2/menus/"+firstMenuId;
+        menuId,
+        test,
+        self = this;
+    request
+        .get( "/wp-json/wp-api-menus/v2/menu-locations" )
+        .end( function( err, res ) {
+          data = JSON.parse( res.text );
+          menuId = data[menuName].ID;
+
+          self.setState({ 
+            menuId: menuId
+          });
+
+    });
+  },
+
+ 
+  componentDidMount: function() {
+
+    var self = this,
+        topMenuId = 3,
+        data,
+        menuItems;
+
+        console.log(self);
+        console.log(self.state);
     
     request
-        .get( url )
+        .get( "/wp-json/wp-api-menus/v2/menus/"+topMenuId )
         .end( function( err, res ) {
           data = JSON.parse( res.text );
           menuItems = data.items;
@@ -32,12 +57,8 @@ var Menu = React.createClass({
             items: menuItems
           });
     });
-  },
 
-  getInitialState: function() {
-    return {
-      items: [{}]
-    };
+
   },
 
   render: function() {

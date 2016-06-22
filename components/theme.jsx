@@ -10,7 +10,7 @@ var PageWrapper = React.createClass({
   render: function() {
     return (
       <div>
-        <Menu />
+        <Menu menu={'topMenu'}/>
         <Router />
       </div>
     );
